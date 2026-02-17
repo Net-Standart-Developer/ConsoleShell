@@ -6,10 +6,12 @@
         {
             using (ConsoleShellFacade service = new ConsoleShellFacade())
             {
-                if (!service.Start())
+                Task<bool> process;
+                if ((process = service.Start()).Result)
                 {
                     ConsoleDecorator.WriteLine("Ошибка при запуске оболочки", TextType.Critical);
-                }
+                    
+                }   
             }
         }
     }
