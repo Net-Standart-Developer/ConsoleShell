@@ -1,12 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleShell
+﻿namespace ConsoleShell
 {
-    internal class ConsoleShellFacade
+    public class ConsoleShellFacade : IService
     {
+        public ConsoleShellFacade()
+        {
+
+        }
+
+        public async Task<bool> Start()
+        {
+            return true;
+        }
+
+        public async Task<bool> Stop()
+        {
+            return true;
+        }
+
+
+
+        public void Dispose()
+        {
+
+        }
+    }
+
+    public interface IService : IDisposable
+    {
+        public Task<bool> Start();
+        public Task<bool> Stop();
     }
 }

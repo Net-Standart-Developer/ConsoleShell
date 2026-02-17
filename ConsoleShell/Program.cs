@@ -4,7 +4,13 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            using (ConsoleShellFacade service = new ConsoleShellFacade())
+            {
+                if (!service.Start())
+                {
+                    ConsoleDecorator.WriteLine("Ошибка при запуске оболочки", TextType.Critical);
+                }
+            }
         }
     }
 }
