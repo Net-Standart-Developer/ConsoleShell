@@ -1,4 +1,5 @@
-﻿using ConsoleShell.Events;
+﻿using ConsoleShell.Commands;
+using ConsoleShell.Events;
 using ConsoleShell.Initialization;
 using ConsoleShell.MyStorage;
 
@@ -11,17 +12,21 @@ namespace ConsoleShell
 
         private readonly Initializer initializer;
         private readonly Storage storage;
+        private readonly CommandParser parser;
         public ConsoleShellFacade()
         {
             initializer = new Initializer();
             storage = Storage.GetInstance();
+            parser = new CommandParser();
         }
 
         public async Task<bool> Start()
         {
             await Task.Run(() =>
             {
+                ServiceStarting?.Invoke(this, new ServiceStartingEventArgs());
                 bool initialStarted = initializer.Start();
+                
                 if (initialStarted)
                 {
                     string userName = initializer.UserName;
@@ -29,12 +34,21 @@ namespace ConsoleShell
                     storage["UserName"] = userName;
                     storage["Path"] = path;
 
-                    ServiceStarting?.Invoke(this, new ServiceStartingEventArgs(userName, path));
+                    ServiceStarted?.Invoke(this, new ServiceStartedEventArgs(userName, path, initialStarted));
 
                     while (true)
                     {
-                        ConsoleDecorator.ReadLine(path + ">", TextType.Usual);
-
+                        string rawCommand = ConsoleDecorator.Read(path + ">", TextType.Usual);
+                        Command? command = parser.ParseCommand(rawCommand);
+                        if(command != null)
+                        {
+                            string commandResult = command.Execute();
+                            ConsoleDecorator.WriteLine(commandResult, TextType.Info);
+                        }
+                        else
+                        {
+                            ConsoleDecorator.WriteLine("Такой комманды не существует.", TextType.Error);
+                        }
                     }
                 }
             });

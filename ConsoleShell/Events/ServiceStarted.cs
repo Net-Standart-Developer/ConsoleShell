@@ -12,5 +12,12 @@ namespace ConsoleShell.Events
         public string User { get; private set; }
         public string Path { get; private set; }
         public bool StartSuccess { get; private set; }
+
+        public ServiceStartedEventArgs(string user, string path, bool startSuccess)
+        {
+            User = user;
+            Path = path;
+            StartSuccess = startSuccess;
+        }
     }
 }

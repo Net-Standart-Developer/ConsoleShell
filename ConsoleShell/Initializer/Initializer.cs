@@ -25,7 +25,7 @@ namespace ConsoleShell.Initialization
 
             while (true)
             {
-                string path = ConsoleDecorator.ReadLine("Введите начальный путь", TextType.Accent);
+                string path = ConsoleDecorator.ReadLine("Введите начальный путь.", TextType.Accent);
                 if (string.IsNullOrEmpty(path))
                 {
                     path = DefaultPath;
@@ -38,7 +38,7 @@ namespace ConsoleShell.Initialization
                 }
                 else
                 {
-                    ConsoleDecorator.WriteLine("Несуществующий путь");
+                    ConsoleDecorator.WriteLine("Несуществующий путь.");
                 }
             }
 

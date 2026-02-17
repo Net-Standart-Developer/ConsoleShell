@@ -9,13 +9,9 @@ namespace ConsoleShell.Events
     public delegate bool ServiceStartingDel(object sender, ServiceStartingEventArgs e);
     public class ServiceStartingEventArgs
     {
-        public string User { get; private set; }
-        public string Path { get; private set; }
-
-        public ServiceStartingEventArgs(string user, string path)
+        public ServiceStartingEventArgs()
         {
-            User = user;
-            Path = path;
+
         }
     }
 }
