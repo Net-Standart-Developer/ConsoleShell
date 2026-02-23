@@ -43,7 +43,9 @@ namespace ConsoleShell
                         if(command != null)
                         {
                             string commandResult = command.Execute();
-                            ConsoleDecorator.WriteLine(commandResult, TextType.Info);
+
+                            if(command.Type != CommandType.NULL)
+                                ConsoleDecorator.WriteLine(commandResult, TextType.Info);
                         }
                         else
                         {

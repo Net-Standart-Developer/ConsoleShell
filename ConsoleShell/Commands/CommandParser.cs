@@ -25,7 +25,12 @@ namespace ConsoleShell.Commands
                         operands[i - 1] = data[i];
                     }
                     return new LSCommand(data[0], operands);
-                    
+                case PWCommand.RAWCOMMAND:
+                    return new PWCommand(data[0], new string[] { });
+                case WHOISCommand.RAWCOMMAND:
+                    return new WHOISCommand(data[0], new string[] { });
+                case "":
+                    return new NullCommand(data[0], new string[] { });
             }
 
             return null;

@@ -25,9 +25,12 @@ namespace ConsoleShell.Commands
     public enum CommandType
     {
         LS,
+        PW,
+        WHOIS,
         CD,
         RM,
         CREATE,
-        NANO
+        NANO,
+        NULL
     }
 }
