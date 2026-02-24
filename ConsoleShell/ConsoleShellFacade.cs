@@ -34,11 +34,11 @@ namespace ConsoleShell
                     storage["UserName"] = userName;
                     storage["Path"] = path;
 
-                    ServiceStarted?.Invoke(this, new ServiceStartedEventArgs(userName, path, initialStarted));
+                    ServiceStarted?.Invoke(this, new ServiceStartedEventArgs(userName, storage["Path"], initialStarted));
 
                     while (true)
                     {
-                        string rawCommand = ConsoleDecorator.Read(path + ">", TextType.Usual);
+                        string rawCommand = ConsoleDecorator.Read(storage["Path"] + ">", TextType.Usual);
                         Command? command = parser.ParseCommand(rawCommand);
                         if(command != null)
                         {
