@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace ConsoleShell.Commands
 {
@@ -30,8 +31,12 @@ namespace ConsoleShell.Commands
             string nanoFile = Path.Combine(fileParts);
             if (Path.IsPathFullyQualified(nanoFile))
             {
-
+                var psi = new ProcessStartInfo(nanoFile);
+                psi.UseShellExecute = true;
+                Process.Start(psi);
             }
+
+            return "";
         }
     }
 }

@@ -37,6 +37,8 @@ namespace ConsoleShell.Commands
                     return new RMCommand(data[0], operands);
                 case CreateCommand.RAWCOMMAND:
                     return new CreateCommand(data[0], operands);
+                case NANOCommand.RAWCOMMAND:
+                    return new NANOCommand(data[0], operands);
                 case "":
                     return new NullCommand(data[0], new string[] { });
             }
