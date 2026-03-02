@@ -29,7 +29,7 @@ namespace ConsoleShell.Commands
             }
 
             string nanoFile = Path.Combine(fileParts);
-            if (Path.IsPathFullyQualified(nanoFile))
+            if (Path.IsPathFullyQualified(nanoFile) && Path.Exists(nanoFile))
             {
                 var psi = new ProcessStartInfo(nanoFile);
                 psi.UseShellExecute = true;

@@ -39,6 +39,8 @@ namespace ConsoleShell.Commands
                     return new CreateCommand(data[0], operands);
                 case NANOCommand.RAWCOMMAND:
                     return new NANOCommand(data[0], operands);
+                case HelpCommand.RAWCOMMAND:
+                    return new HelpCommand(data[0], new string[] { });
                 case "":
                     return new NullCommand(data[0], new string[] { });
             }

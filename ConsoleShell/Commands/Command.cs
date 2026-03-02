@@ -31,6 +31,7 @@ namespace ConsoleShell.Commands
         RM,
         CREATE,
         NANO,
+        HELP,
         NULL
     }
 }
